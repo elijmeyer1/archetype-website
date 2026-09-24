@@ -159,6 +159,9 @@
     .sbtn:hover{background:var(--cedar)}
     .sbtn:disabled{opacity:.6;cursor:default}
     .fmsg{margin-top:1rem;font-size:.8rem;color:var(--stondk)}
+    .fmsg.ok{margin-top:1.7rem;font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-style:italic;font-weight:400;line-height:1.3;color:var(--cedar);animation:fmsgIn .7s ease both}
+    @keyframes fmsgIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+    @media (prefers-reduced-motion:reduce){.fmsg.ok{animation:none}}
     .arr{width:18px;height:1px;background:#fff;position:relative;flex-shrink:0}
     .arr::after{content:'';position:absolute;right:0;top:-3px;width:6px;height:6px;border-top:1px solid #fff;border-right:1px solid #fff;transform:rotate(45deg)}
 
@@ -373,7 +376,7 @@
     try{
       const r=await fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(new FormData(form)).toString()});
       if(!r.ok)throw new Error(r.status);
-      form.reset();fmsg.textContent='Thank you \u2014 we\u2019ll be in touch soon.';
+      form.reset();sbtn.style.display='none';fmsg.className='fmsg ok';fmsg.textContent='Thank you \u2014 we\u2019ll be in touch soon.';
     }catch(err){
       fmsg.textContent='Something went wrong. Please call (352) 328-8284.';
     }finally{sbtn.disabled=false}
