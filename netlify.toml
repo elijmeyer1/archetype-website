@@ -1,3 +1,9 @@
 [build]
   publish = "."
   command = ""
+
+# Old GoDaddy parking page path — send cached visitors to the homepage
+[[redirects]]
+  from = "/lander"
+  to = "/"
+  status = 301
